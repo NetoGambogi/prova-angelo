@@ -1,0 +1,70 @@
+# ==========================================
+# 📦 Composer
+/vendor/
+composer.lock
+
+# ==========================================
+# ⚙️ Settings & Cache
+.env
+.env.local
+.env.*.local
+.phpunit.result.cache
+*.cache
+.cache/
+coverage/
+.php-cs-fixer.cache
+
+# ==========================================
+# 🧪 PHPUnit and tests
+test-output/
+tests/_output/
+junit.xml
+phpunit.xml
+phpunit.xml.dist
+
+# ==========================================
+# 🔧 IDEs
+# PhpStorm
+.idea/
+
+# VSCode
+.vscode/
+
+# NetBeans
+nbproject/private/
+
+# Eclipse
+.project
+.buildpath
+.settings/
+
+# Sublime
+*.sublime-workspace
+*.sublime-project
+
+# ==========================================
+# 📦 Operating system
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# ==========================================
+# ⚓ Docker
+.docker/
+docker-compose.override.yml
+
+# ==========================================
+# 🛠️ Logs and reports
+*.log
+logs/
+*.tmp
+*.swp
+
+# ==========================================
+# ⚙️ Build tools
+node_modules/
+dist/
+build/
+public/build/
