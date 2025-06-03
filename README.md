@@ -11,7 +11,7 @@ Módulo 1 - Convite e Cadastro de Alunos e módulo 2 - Seleção de Casas: Thale
  
 Módulo 3 - Gerenciamento de Torneios e Competições: Thiago, Rafael
 
-Módulo 4 - Controle Acadêmico e Disciplinar: Mateus, Neto 
+Módulo 4 - Controle Acadêmico e Disciplinar: Mateus, Luis Antônio
 
 Módulo 5 - Gerenciamento de Professores e Funcionários: Giovanne, Bruna
 
