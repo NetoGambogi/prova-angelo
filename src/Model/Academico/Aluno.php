@@ -11,6 +11,7 @@ final class Aluno extends Pessoa
     private string $casa;
     private int $ano;
     private array $notas = [];
+    private int $pontos = 0;
 
     public function __construct(
         string $nome,
@@ -42,5 +43,15 @@ final class Aluno extends Pessoa
     public function getNotas(): array
     {
         return $this->notas;
+    }
+
+     public function getPontos(): int
+    {
+        return $this->pontos;
+    }
+
+    public function setPontos(int $pontos): void
+    {
+        $this->pontos = $pontos;
     }
 }
