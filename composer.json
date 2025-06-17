@@ -14,5 +14,8 @@
             "App\\": "src/Model"
         }
     },
-    "require": {}
+    "require": {
+        "ext-readline": "*",
+        "ext-ctype": "*"
+    }
 }

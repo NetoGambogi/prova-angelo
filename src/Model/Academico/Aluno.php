@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Academico;
 
-use App\Pessoa;
 
-final class Aluno extends Pessoa
+class Aluno extends Pessoa
 {
-    private string $casa;
+
+    private Casa $casa;
     private int $ano;
     private array $notas = [];
     private int $pontos = 0;
@@ -17,7 +17,7 @@ final class Aluno extends Pessoa
         string $nome,
         int $idade,
         string $genero,
-        string $casa,
+        Casa $casa,
         int $ano
     ) {
         parent::__construct($nome, $idade, $genero);
@@ -25,7 +25,7 @@ final class Aluno extends Pessoa
         $this->ano = $ano;
     }
 
-    public function getCasa(): string
+    public function getCasa(): Casa
     {
         return $this->casa;
     }
@@ -45,7 +45,7 @@ final class Aluno extends Pessoa
         return $this->notas;
     }
 
-     public function getPontos(): int
+    public function getPontos(): int
     {
         return $this->pontos;
     }

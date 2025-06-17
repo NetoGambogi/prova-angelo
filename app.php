@@ -16,10 +16,8 @@ function exibirMenu(): void
 
 function obterEntrada(): string
 {
-    $handle = fopen("php://stdin", "r");
-    $line = trim(fgets($handle));
-    fclose($handle);
-    return $line;
+
+    return trim(fgets(STDIN));
 }
 
 exibirMenu();

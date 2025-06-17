@@ -6,8 +6,27 @@ namespace App\Academico;
 
 final class Boletim
 {
-    public function gerar(Aluno $aluno): array
+    public function __construct(
+        private Aluno $aluno
+    ) {}
+
+    public function gerarConteudo(): string
     {
-        return $aluno->getNotas();
+        $conteudo = "Boletim de {$this->aluno->getNome()} - Casa: {$this->aluno->getCasa()->value}";
+
+        $notas = $this->aluno->getNotas();
+
+        if (empty($notas)) {
+            $conteudo .= "Nenhuma nota registrada até o momento.";
+            return $conteudo;
+        }
+
+        $conteudo .= "";
+        foreach ($notas as $nota) {
+            $conteudo .= "{$nota->getDisciplina()->getNome()}: Nota {$nota->getValor()}";
+        }
+        $conteudo .= "";
+
+        return $conteudo;
     }
 }
