@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Academico\Aluno;
-use App\Pessoa;
+use App\Academico\Pessoa;
 use App\Academico\Casa;
 
 class AlunoHogwarts extends Aluno

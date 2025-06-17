@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Academico\Aluno;
-use App\Model\Carta;
+use App\Academico\Carta;
 use App\Academico\Casa;
 
 final class AlunoNovo extends Aluno
