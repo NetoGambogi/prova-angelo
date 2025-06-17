@@ -3,17 +3,17 @@
 declare(strict_types=1);
 
 use App\Academico\Aluno;
-
 use App\Pessoa;
+use App\Academico\Casa;
 
 class AlunoHogwarts extends Aluno
 {
     protected string $traco;
-    private string $casa;
+    private Casa $casa;
     private string $sangue;
     private int $ano;
 
-    public function __construct(string $nome, int $idade, string $genero, string $traco, string $casa, int $ano)
+    public function __construct(string $nome, int $idade, string $genero, string $traco, Casa $casa, int $ano)
     {
         parent::__construct($nome, $idade, $genero, $casa, $ano);
         $this->traco = $traco;
@@ -32,12 +32,12 @@ class AlunoHogwarts extends Aluno
         $this->traco = $traco;
     }
 
-    public function getCasa(): string
+  public function getCasa(): Casa
     {
         return $this->casa;
     }
 
-    public function setCasa(string $casa): void
+    public function setCasa(Casa $casa): void
     {
         $this->casa = $casa;
     }
@@ -81,7 +81,7 @@ class AlunoHogwarts extends Aluno
     {
         return "Resumo do Aluno Hogwarts:\n" .
             "Nome: {$this->getNome()}\n" .
-            "Casa: {$this->casa}\n" .
+            "Casa: {$this->casa->getNome()}\n" .
             "Ano: {$this->ano}\n" .
             "Traço: {$this->traco}\n" .
             "Tipo de sangue: {$this->sangue}";

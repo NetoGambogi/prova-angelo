@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Academico\Aluno;
 use App\Model\Carta;
+use App\Academico\Casa;
 
 final class AlunoNovo extends Aluno
 {
@@ -16,7 +17,7 @@ final class AlunoNovo extends Aluno
         string $nome,
         int $idade,
         string $genero,
-        string $casa,
+        Casa $casa,
         int $ano,
         string $traco
     ) {
