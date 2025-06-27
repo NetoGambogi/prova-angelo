@@ -3,23 +3,45 @@
 declare(strict_types=1);
 
 use App\Academico\Aluno;
-use App\Academico\Pessoa;
+use App\Academico\Carta;
 use App\Academico\Casa;
 
-class AlunoHogwarts extends Aluno
+final class AlunoNovo extends Aluno
 {
-    protected string $traco;
-    private Casa $casa;
+    private string $traco;
     private string $sangue;
-    private int $ano;
+    private bool $cartaAceita = false;
+    private ?Carta $carta = null;//tem erro, pois a classe carta ainda não foi colocada.
 
-    public function __construct(string $nome, int $idade, string $genero, string $traco, Casa $casa, int $ano)
-    {
+    public function __construct(
+        string $nome,
+        int $idade,
+        string $genero,
+        Casa $casa,
+        int $ano,
+        string $traco
+    ) {
         parent::__construct($nome, $idade, $genero, $casa, $ano);
         $this->traco = $traco;
-        $this->casa = $casa;
-        $this->ano = $this->validarAno($ano);
         $this->sangue = $this->sortearTipoDeSangue();
+    }
+
+    private function sortearTipoDeSangue(): string
+    {
+        $tipos = ['Puro-sangue', 'Mestiço', 'Nascido trouxa'];
+        return $tipos[array_rand($tipos)];
+    }
+
+    public function receberCarta(Carta $carta): void
+    {
+        $this->carta = $carta;
+    }
+
+    public function aceitarCarta(): void
+    {
+        if ($this->carta !== null) {
+            $this->cartaAceita = true;
+        }
     }
 
     public function getTraco(): string
@@ -32,16 +54,6 @@ class AlunoHogwarts extends Aluno
         $this->traco = $traco;
     }
 
-  public function getCasa(): Casa
-    {
-        return $this->casa;
-    }
-
-    public function setCasa(Casa $casa): void
-    {
-        $this->casa = $casa;
-    }
-
     public function getSangue(): string
     {
         return $this->sangue;
@@ -52,38 +64,37 @@ class AlunoHogwarts extends Aluno
         $this->sangue = $sangue;
     }
 
-    public function getAno(): int
+    public function getCarta(): ?Carta
     {
-        return $this->ano;
+        return $this->carta;
     }
 
-    public function setAno(int $ano): void
+    public function setCarta(?Carta $carta): void
     {
-        $this->ano = $this->validarAno($ano);
+        $this->carta = $carta;
     }
 
-    private function sortearTipoDeSangue(): string
+    public function cartaFoiAceita(): bool
     {
-        $tipos = ['Puro-sangue', 'Mestiço', 'Nascido trouxa'];
-        return $tipos[array_rand($tipos)];
+        return $this->cartaAceita;
     }
 
-    private function validarAno(int $ano): int
+    public function setCartaAceita(bool $aceita): void
     {
-        if ($ano >= 2 && $ano <= 7) {
-            return $ano;
-        } else {
-            throw new \InvalidArgumentException("Ano inválido: deve estar entre 2º e 7º ano.");
-        }
+        $this->cartaAceita = $aceita;
     }
 
+    // Método polimórfico sobrescrito
     public function getResumo(): string
     {
-        return "Resumo do Aluno Hogwarts:\n" .
+        if (!$this->cartaAceita) {
+            return "O aluno {$this->getNome()} ainda não aceitou a carta de Hogwarts.";
+        }
+
+        return "Resumo do Aluno Novo:\n" .
             "Nome: {$this->getNome()}\n" .
-            "Casa: {$this->casa->getNome()}\n" .
-            "Ano: {$this->ano}\n" .
             "Traço: {$this->traco}\n" .
-            "Tipo de sangue: {$this->sangue}";
+            "Tipo de sangue: {$this->sangue}\n" .
+            "Carta aceita: Sim";
     }
 }
