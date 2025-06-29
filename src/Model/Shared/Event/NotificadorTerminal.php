@@ -10,6 +10,6 @@ class NotificadorTerminal implements NotificadorInterface
 {
     public function notificar(string $mensagem): void
     {
-        echo $mensagem . PHP_EOL;
+        echo "$mensagem" . PHP_EOL;
     }
 }

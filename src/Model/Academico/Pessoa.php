@@ -8,12 +8,18 @@ class Pessoa
     private string $nome;
     private int $idade;
     private string $genero;
+    private array $mensagensRecebidas = [];
 
     public function __construct(string $nome, int $idade, string $genero)
     {
         $this->nome = $nome;
         $this->idade = $idade;
         $this->genero = $genero;
+    }
+
+    public function receberMensagem(\App\Academico\Mensagem $mensagem): void
+    {
+    $this->mensagensRecebidas[] = $mensagem;
     }
 
     public function getNome(): string
@@ -44,5 +50,10 @@ class Pessoa
     public function setGenero(string $genero): void
     {
         $this->genero = $genero;
+    }
+
+    public function getMensagensRecebidas(): array
+    { 
+    return $this->mensagensRecebidas;
     }
 }
