@@ -9,6 +9,10 @@ final class Professor extends Pessoa
 
     /** @var Disciplina[] */
     private array $disciplinasLecionadas = [];
+     /** @var Turma[] */
+    private array $turmas = [];
+    /** @var AtividadeExtra[] */
+    private array $atividadesExtras = [];
     public function __construct(
         string $nome,
         int $idade,
@@ -31,5 +35,41 @@ final class Professor extends Pessoa
     public function getDisciplinasLecionadas(): array
     {
         return $this->disciplinasLecionadas;
+    }
+
+     /**
+     * Adiciona uma turma à lista de turmas do professor.
+     * @param Turma $turma
+     */
+    public function adicionarTurma(Turma $turma): void
+    {
+        $this->turmas[] = $turma;
+    }
+
+    /**
+     * Retorna a lista de turmas do professor.
+     * @return Turma[]
+     */
+    public function getTurmas(): array
+    {
+        return $this->turmas;
+    }
+
+    /**
+     * Adiciona uma atividade extra à lista do professor.
+     * @param AtividadeExtra $atividade
+     */
+    public function adicionarAtividadeExtra(AtividadeExtra $atividade): void
+    {
+        $this->atividadesExtras[] = $atividade;
+    }
+
+    /**
+     * Retorna a lista de atividades extras do professor.
+     * @return AtividadeExtra[]
+     */
+    public function getAtividadesExtras(): array
+    {
+        return $this->atividadesExtras;
     }
 }
