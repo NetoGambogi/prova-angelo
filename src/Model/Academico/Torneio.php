@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\GerenciamentoDeTorneios;
-
-use App\Model\GerenciamentoDeTorneios\Jogador;
+namespace App\Model\Academico;
 use DateTime;
 
 final class Torneio
@@ -13,13 +11,16 @@ final class Torneio
     private string $local;
     private DateTime $dataInicio;
     private DateTime $dataFim;
+    private array $participantes = [];
+    
 
-    public function __construct(string $nome, string $local, DateTime $dataInicio, DateTime $dataFim)
+    public function __construct(string $nome, string $local, DateTime $dataInicio, DateTime $dataFim, array $participantes = [])
     {
         $this->nome = $nome;
         $this->local = $local;
         $this->dataInicio = $dataInicio;
         $this->dataFim = $dataFim;
+        $this->participantes = $participantes;
     }
     public function getNome(): string
     {
@@ -59,8 +60,12 @@ final class Torneio
     {
         $this->dataFim = $dataFim;
     }
-
-    
-        // Implementar lógica para adicionar jogador ao torneio
-    
+    public function adicionarParticipante(ParticipanteTorneio $participante): void
+    {
+        $this->participantes[] = $participante;
+    }
+    public function getParticipantes(): array
+    {
+        return $this->participantes;
+    }
 }
