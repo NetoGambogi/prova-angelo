@@ -14,9 +14,9 @@ final class Torneio
     private DateTime $dataFim;
     private array $participantes = [];
     private int $pontuacao = 0;
-    private Desafios $desafios = '';
+    private Desafios $desafios;
 
-    public function __construct(string $nome, string $local, DateTime $dataInicio, DateTime $dataFim, array $participantes = [], int $pontuacao = 0, Desafios $desafios = '')
+    public function __construct(string $nome, string $local, DateTime $dataInicio, DateTime $dataFim, array $participantes = [], int $pontuacao = 0, Desafios $desafios)
     {
         $this->nome = $nome;
         $this->local = $local;
@@ -98,7 +98,7 @@ final class Torneio
             throw new Exception('A data inicial não pode ser após ou igual a data final.');
         }
 
-        return new Torneio($nome, $local, $dataInicio, $dataFim);
+        return new Torneio($nome, $local, $dataInicio, $dataFim, [], 0, new Desafios('default', 'default', $dataInicio, $dataFim, $local));
     }
 
     public function criarTorneioComParticipantes(
