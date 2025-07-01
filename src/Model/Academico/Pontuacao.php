@@ -1,13 +1,6 @@
 <?php
-<<<<<<< HEAD
 namespace App\Academico;
 
-=======
-
-declare(strict_types=1);
-
-namespace App\Model\Academico;
->>>>>>> 590cdc4626579d800f70617d1ddf296c322337d2
 class Pontuacao {
     private array $pontosPorCasa = [];
 
