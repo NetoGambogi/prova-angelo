@@ -21,14 +21,14 @@ $torneio = new Torneio(
     new DateTime('1994-11-24'),
     new DateTime('1994-12-20'),
 );
-/*
+
 $alunos = [
-    new AlunoHogwarts("Harry Potter", 18, "Masculino", "Coragem", , 5),
-    new AlunoHogwarts("Cedrico Diggory", 18, "Masculino", "Lealdade", , 6),
-    new AlunoHogwarts("Fleur Delacour", 18, "Feminino", "Determinação", , 7),
-    new AlunoHogwarts("Viktor Krum", 18, "Masculino", "Coragem", , 5),
+    new AlunoHogwarts("Harry Potter", 18, "Masculino", "Coragem", $aluno->getCasa(), 5),
+    new AlunoHogwarts("Cedrico Diggory", 18, "Masculino", "Lealdade", $aluno->getCasa(), 6),
+    new AlunoHogwarts("Fleur Delacour", 18, "Feminino", "Determinação", $aluno->getCasa(), 7),
+    new AlunoHogwarts("Viktor Krum", 18, "Masculino", "Coragem", $aluno->getCasa(), 5),
 ];
-*/
+
 // Função para enviar convites para vários alunos
 function enviarConvites(array $alunos, Torneio $torneio) {
     $convites = [];
