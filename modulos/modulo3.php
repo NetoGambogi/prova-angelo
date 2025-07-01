@@ -8,10 +8,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Academico\ProvaMagica;
 use App\Academico\Pontuacao;
-use App\Model\Academico\ConviteTorneio;
-use App\Model\Academico\Torneio;
-use App\Model\Academico\AlunoHogwarts;
-use App\Model\Academico\Casa;
+use App\Academico\ConviteTorneio;
+use App\Academico\Torneio;
+use App\Academico\AlunoHogwarts;
+use App\Academico\Casa;
 use DateTime;
 
 // Criação do Torneio Tribruxo
@@ -22,18 +22,25 @@ $torneio = new Torneio(
     new DateTime('1994-12-20'),
 );
 
+// Criação das casas usando a classe Casa que você já criou
+$casaGrifinoria = new Casa('Grifinória');
+$casaLufaLufa = new Casa('Lufa-Lufa');
+$casaCorvinal = new Casa('Corvinal');
+$casaSonserina = new Casa('Sonserina');
+
+// Criação dos alunos com as casas definidas
 $alunos = [
-    new AlunoHogwarts("Harry Potter", 18, "Masculino", "Coragem", $aluno->getCasa(), 5),
-    new AlunoHogwarts("Cedrico Diggory", 18, "Masculino", "Lealdade", $aluno->getCasa(), 6),
-    new AlunoHogwarts("Fleur Delacour", 18, "Feminino", "Determinação", $aluno->getCasa(), 7),
-    new AlunoHogwarts("Viktor Krum", 18, "Masculino", "Coragem", $aluno->getCasa(), 5),
+    new AlunoHogwarts("Harry Potter", 18, "Masculino", "Coragem", $casaGrifinoria, 5),
+    new AlunoHogwarts("Cedrico Diggory", 18, "Masculino", "Lealdade", $casaLufaLufa, 6),
+    new AlunoHogwarts("Fleur Delacour", 18, "Feminino", "Determinação", $casaCorvinal, 7),
+    new AlunoHogwarts("Viktor Krum", 18, "Masculino", "Coragem", $casaSonserina, 5),
 ];
 
 // Função para enviar convites para vários alunos
 function enviarConvites(array $alunos, Torneio $torneio) {
     $convites = [];
     foreach ($alunos as $aluno) {
-        $mensagem = 'É com muita honra que convidamos você, ' . $aluno->getNome() . ', para participar do Torneio Tribruxo! E representar a sua casa.' . "\n" .
+        $mensagem = 'É com muita honra que convidamos você, ' . $aluno->getNome() . ', para participar do Torneio Tribruxo! E representar a sua casa: ' . $aluno->getCasa()->getNome() . '.' . "\n" .
             'Prepare-se para enfrentar uma série de desafios mágicos e perigosos! Onde o vencedor receberá um prêmio incrível!' . "\n" .
             'A TAÇA TRIBRUXO!' . "\n" .
             'Data do Torneio: ' . $torneio->getDataInicio()->format('Y-m-d') . ' até ' . $torneio->getDataFim()->format('Y-m-d') . "\n" .
@@ -53,8 +60,10 @@ function enviarConvites(array $alunos, Torneio $torneio) {
     return $convites;
 }
 
-$convites = enviarConvites([$aluno], $torneio);
+// Chamando a função corretamente
+$convites = enviarConvites($alunos, $torneio);
 
+// Exibindo os convites
 foreach ($convites as $convite) {
     echo $convite->getAluno()->getNome() . ' - ';
     echo $convite->isAceito() ? 'Aceitou o convite.' : 'Recusou o convite.';
@@ -79,4 +88,3 @@ foreach ($avaliacoes as $avaliacao) {
 
 echo "Ranking da Prova Mágica: " . $desafio->getTitulo() . "\n";
 $pontuacao->exibirRanking();
-
