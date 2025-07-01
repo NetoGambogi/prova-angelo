@@ -1,17 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Academico\Pontuacao;
-use App\Academico\Desafios;
 use App\Academico\ProvaMagica;
+use App\Academico\Pontuacao;
 
-// Instanciando desafio mágico
-$desafio1 = new ProvaMagica("Feitiço de Defesa", "Executar um feitiço de escudo", 10.0);
+$desafio = new ProvaMagica("Feitiço de Defesa", "Executar um feitiço de escudo", 10.0);
 
-// Notas recebidas por casa
 $avaliacoes = [
     ['casa' => 'Grifinória', 'nota' => 8.0],
     ['casa' => 'Sonserina',  'nota' => 7.5],
@@ -19,16 +14,12 @@ $avaliacoes = [
     ['casa' => 'Lufa-Lufa',  'nota' => 6.5]
 ];
 
-// Pontuação
 $pontuacao = new Pontuacao();
 
 foreach ($avaliacoes as $avaliacao) {
-    $casa = $avaliacao['casa'];
-    $nota = $avaliacao['nota'];
-    $pontos = $desafio1->avaliarDesempenho($nota);
-    $pontuacao->adicionarPontos($casa, $pontos);
+    $pontos = $desafio->avaliarDesempenho($avaliacao['nota']);
+    $pontuacao->adicionarPontos($avaliacao['casa'], $pontos);
 }
 
-// Exibir resultado
-echo "Ranking da Prova Mágica - " . $desafio1->getTitulo() . ":\n";
+echo "Ranking da Prova Mágica: " . $desafio->getTitulo() . "\n";
 $pontuacao->exibirRanking();

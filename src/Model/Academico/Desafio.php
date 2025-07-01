@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Academico;
-use App\Academico\ProvaMagica;
-use DateTime;
+namespace App\Academico;
 
-abstract class Desafios {
+abstract class Desafio {
     protected string $titulo;
     protected string $descricao;
     protected float $pontuacaoMaxima;

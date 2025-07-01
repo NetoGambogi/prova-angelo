@@ -1,4 +1,6 @@
 <?php
+namespace App\Academico;
+
 class Pontuacao {
     private array $pontosPorCasa = [];
 
@@ -17,7 +19,7 @@ class Pontuacao {
 
     public function exibirRanking(): void {
         foreach ($this->getRanking() as $casa => $pontos) {
-            echo $casa . ': ' . $pontos . PHP_EOL;
+            echo "$casa: $pontos\n";
         }
     }
 }
