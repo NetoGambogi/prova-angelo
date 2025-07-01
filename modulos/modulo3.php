@@ -2,11 +2,15 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace App\Academico;
 
-use App\Academico\Pontuacao;
-use App\Academico\Desafios;
-use App\Academico\ProvaMagica;
+use App\Model\Academico\Desafios;
+use App\Model\Academico\Torneio;
+use App\Model\Academico\Pontuacao;
+use App\Model\Academico\ProvaMagica;
+
+
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Instanciando desafio mágico
 $desafio1 = new ProvaMagica("Feitiço de Defesa", "Executar um feitiço de escudo", 10.0);

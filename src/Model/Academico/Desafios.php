@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 namespace App\Model\Academico;
+
+use App\Model\Academico\Torneio;
 use App\Academico\ProvaMagica;
 use DateTime;
 

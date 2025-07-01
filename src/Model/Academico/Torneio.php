@@ -98,7 +98,7 @@ final class Torneio
             throw new Exception('A data inicial não pode ser após ou igual a data final.');
         }
 
-        return new Torneio($nome, $local, $dataInicio, $dataFim, [], 0, new Desafios('default', 'default', $dataInicio, $dataFim, $local));
+        return new Torneio($nome, $local, $dataInicio, $dataFim, [], 0, new Desafios('default', 'default', $dataInicio->getTimestamp(), $dataFim->getTimestamp(), $local));
     }
 
     public function criarTorneioComParticipantes(
@@ -115,4 +115,5 @@ final class Torneio
         }
         return $torneio;
     }
+    
 }

@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Model\Academico;
-namespace App\Model\Desafios;
+
+use App\Model\Academico\Desafios;
+use App\Model\Academico\Torneio;
+use App\Model\Academico\Pontuacao;
 use DateTime;
 
-class ProvaMagica extends Desafio {
+class ProvaMagica extends Desafios {
     public function __construct(string $titulo, string $descricao, float $pontuacaoMaxima) {
         parent::__construct($titulo, $descricao, $pontuacaoMaxima);
     }
