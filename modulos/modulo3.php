@@ -53,7 +53,7 @@ function enviarConvites(array $alunos, Torneio $torneio) {
     return $convites;
 }
 
-$convites = enviarConvites($alunos, $torneio);
+$convites = enviarConvites([$aluno], $torneio);
 
 foreach ($convites as $convite) {
     echo $convite->getAluno()->getNome() . ' - ';
