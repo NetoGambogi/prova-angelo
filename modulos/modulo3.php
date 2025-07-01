@@ -1,9 +1,65 @@
 <?php
 
+declare(strict_types=1);
+
+namespace App\Model\Academico;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Academico\ProvaMagica;
 use App\Academico\Pontuacao;
+use App\Model\Academico\ConviteTorneio;
+use App\Model\Academico\Torneio;
+use App\Model\Academico\AlunoHogwarts;
+use App\Model\Academico\Casa;
+use DateTime;
+
+// Criação do Torneio Tribruxo
+$torneio = new Torneio(
+    'Torneio Tribruxo',
+    'Castelo de Hogwarts',
+    new DateTime('1994-11-24'),
+    new DateTime('1994-12-20'),
+);
+/*
+$alunos = [
+    new AlunoHogwarts("Harry Potter", 18, "Masculino", "Coragem", , 5),
+    new AlunoHogwarts("Cedrico Diggory", 18, "Masculino", "Lealdade", , 6),
+    new AlunoHogwarts("Fleur Delacour", 18, "Feminino", "Determinação", , 7),
+    new AlunoHogwarts("Viktor Krum", 18, "Masculino", "Coragem", , 5),
+];
+*/
+// Função para enviar convites para vários alunos
+function enviarConvites(array $alunos, Torneio $torneio) {
+    $convites = [];
+    foreach ($alunos as $aluno) {
+        $mensagem = 'É com muita honra que convidamos você, ' . $aluno->getNome() . ', para participar do Torneio Tribruxo! E representar a sua casa.' . "\n" .
+            'Prepare-se para enfrentar uma série de desafios mágicos e perigosos! Onde o vencedor receberá um prêmio incrível!' . "\n" .
+            'A TAÇA TRIBRUXO!' . "\n" .
+            'Data do Torneio: ' . $torneio->getDataInicio()->format('Y-m-d') . ' até ' . $torneio->getDataFim()->format('Y-m-d') . "\n" .
+            'Local: ' . $torneio->getLocal() . "\n" .
+            'Boa sorte!' . "\n";
+
+        $convite = new ConviteTorneio(
+            'CONVITE PARA O TORNEIO TRIBRUXO',
+            $aluno,
+            $torneio,
+            $torneio->getDataInicio(),
+            $mensagem
+        );
+        $convite->aceitarConvite();
+        $convites[] = $convite;
+    }
+    return $convites;
+}
+
+$convites = enviarConvites($alunos, $torneio);
+
+foreach ($convites as $convite) {
+    echo $convite->getAluno()->getNome() . ' - ';
+    echo $convite->isAceito() ? 'Aceitou o convite.' : 'Recusou o convite.';
+    echo PHP_EOL;
+}
 
 $desafio = new ProvaMagica("Feitiço de Defesa", "Executar um feitiço de escudo", 10.0);
 
@@ -23,3 +79,4 @@ foreach ($avaliacoes as $avaliacao) {
 
 echo "Ranking da Prova Mágica: " . $desafio->getTitulo() . "\n";
 $pontuacao->exibirRanking();
+
