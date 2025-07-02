@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Academico;
+
 use DateTime;
 
 class ConviteTorneio
@@ -12,16 +13,15 @@ class ConviteTorneio
     private Torneio $torneio;
     private DateTime $dataConvite;
     private string $informacoes;
-    private bool $aceito;
+    private bool $aceito = false;
+    private bool $respondido = false;
 
-    public function __construct(string $convite, AlunoHogwarts $aluno, Torneio $torneio, DateTime $dataConvite, string $informacoes)
-    {
+    public function __construct(string $convite, AlunoHogwarts $aluno, Torneio $torneio, DateTime $dataConvite, string $informacoes){
         $this->convite = $convite;
         $this->aluno = $aluno;
         $this->torneio = $torneio;
         $this->dataConvite = $dataConvite;
         $this->informacoes = $informacoes;
-        $this->aceito = false; // Convite não aceito por padrão
     }
 
     public function getConvite(): string
@@ -71,29 +71,31 @@ class ConviteTorneio
     public function setAceito(bool $aceito): void
     {
         $this->aceito = $aceito;
+        $this->respondido = true;
     }
-
     public function aceitarConvite(): void
     {
         $this->aceito = true;
+        $this->respondido = true;
     }
 
     public function recusarConvite(): void
     {
         $this->aceito = false;
+        $this->respondido = true;
     }
-    public function enviarConvite(): void
+    public function foiAceito(): bool
     {
-        $convite = new ConviteTorneio(
-            $this->convite,
-            $this->aluno,
-            $this->torneio,
-            new DateTime(),
-            "Convite para o torneio: {$this->torneio->getNome()}" . PHP_EOL .
-            "Local: {$this->torneio->getLocal()}" . PHP_EOL .
-            "Data de Início: {$this->torneio->getDataInicio()->format('Y-m-d H:i:s')}" . PHP_EOL .
-            "Data de Finalização: {$this->torneio->getDataFim()->format('Y-m-d H:i:s')}" . PHP_EOL .
-            "Informações: {$this->informacoes}"
-        );        
+        return $this->respondido && $this->aceito;
+    }
+
+    public function foiRecusado(): bool
+    {
+        return $this->respondido && !$this->aceito;
+    }
+
+    public function foiRespondido(): bool
+    {
+        return $this->respondido;
     }
 }

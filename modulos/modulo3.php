@@ -65,7 +65,7 @@ $convites = enviarConvites($alunos, $torneio);
 
 // Função para decidir se o aluno aceita ou recusa
 function decidirConvite(ConviteTorneio $convite): void {
-    echo $convite->getAluno()->getNome() . ", você aceita o convite? (s/n): ";
+    echo $convite->getAluno()->getNome() . ", você aceita o convite? (s ou sim/n ou não): ";
     $resposta = strtolower(trim(readline()));
     if ($resposta === 's' || $resposta === 'sim') {
         $convite->aceitarConvite();
@@ -80,9 +80,33 @@ function decidirConvite(ConviteTorneio $convite): void {
 }
 
 // Executa a decisão para cada convite
-foreach ($convites as $convite) {
-    decidirConvite($convite);
-}
+    $alunosAceitaram = [];
+    $alunosRecusaram = [];
+        foreach ($convites as $convite) {
+            decidirConvite($convite);
+
+            if ($convite->foiAceito()) {
+                $alunosAceitaram[] = $convite->getAluno()->getNome();
+            } elseif ($convite->foiRecusado()) {
+                $alunosRecusaram[] = $convite->getAluno()->getNome();
+            }
+        }
+    echo "\n=== ALUNOS QUE ACEITARAM O CONVITE ===\n";
+        foreach ($alunosAceitaram as $nome) {
+    echo "- $nome\n";
+    }
+
+    echo "\n=== ALUNOS QUE RECUSARAM O CONVITE ===\n";
+        foreach ($alunosRecusaram as $nome) {
+    echo "- $nome\n";
+    }
+    echo "\n============================================\n";
+
+    echo "Torneio Tribruxo Aconteceu!\n";
+    echo "Após o Torneio, os alunos que participaram tiveram seu desempenho avaliado.\n";
+    echo "Foi um evento mágico inesquecível!\n";
+    echo "Um Ranking foi criado para mostrar o desempenho dos alunos que participaram do Torneio Tribruxo.\n";
+    echo "O Ranking foi exibido no Salão Principal.\n";
 
 // Criar um desafio
 $desafio = new TorneioBruxo("Torneio Tribruxo", "Jogo de Quadribol", 10.0);
