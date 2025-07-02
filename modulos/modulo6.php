@@ -5,7 +5,6 @@ declare(strict_types=1);
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Academico\Professor;
-use App\Academico\Administrador;
 use App\Academico\Aluno;
 use App\Academico\Casa;
 use App\Academico\Mensagem;
@@ -39,9 +38,8 @@ function selecionarOpcao(string $prompt, array $opcoes): mixed
 $notificador = new NotificadorTerminal();
 $servico = new ServicoDeMensagens($notificador);
 
-// Emitentes
+// Emitente fixo
 $professor = new Professor("Minerva McGonagall", 65, "Feminino");
-$administrador = new Administrador("Alvo Dumbledore", 115, "Masculino");
 
 // Destinatários
 $alunos = [
@@ -66,11 +64,10 @@ while (true) {
     switch ($opcaoMenu) {
         case '1':
             echo PHP_EOL . "--- Enviar Notificação Imediata ---" . PHP_EOL;
-            $emissor = selecionarOpcao("Escolha o emissor:", [$professor, $administrador]);
             $mensagemTexto = readline("Digite a mensagem: ");
             $mensagem = new Mensagem(
                 $mensagemTexto,
-                $emissor,
+                $professor,
                 $alunos,
                 new DateTime()
             );
@@ -79,7 +76,6 @@ while (true) {
 
         case '2':
             echo PHP_EOL . "--- Agendar Aviso ---" . PHP_EOL;
-            $emissor = selecionarOpcao("Escolha o emissor:", [$professor, $administrador]);
             $mensagemTexto = readline("Digite a mensagem a agendar: ");
             $dataHora = readline("Digite data/hora agendada (Y-m-d H:i): ");
             $dataAgendada = DateTime::createFromFormat('Y-m-d H:i', $dataHora);
@@ -91,7 +87,7 @@ while (true) {
 
             $mensagemAgendada = new Mensagem(
                 $mensagemTexto,
-                $emissor,
+                $professor,
                 $alunos,
                 new DateTime(),
                 $dataAgendada
@@ -113,10 +109,11 @@ while (true) {
                 echo "Nenhuma notificação recebida ainda." . PHP_EOL;
             } else {
                 foreach ($mensagens as $m) {
-                    echo "- [" . ($m->getStatus()) . "] " . $m->getConteudo() . PHP_EOL;
+                    echo "- " . $m->getConteudo() . PHP_EOL;
                 }
             }
             break;
+
 
         case '5':
             echo PHP_EOL . "--- Confirmar Leitura ---" . PHP_EOL;

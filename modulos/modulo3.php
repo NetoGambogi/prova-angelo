@@ -6,7 +6,7 @@ namespace App\Model\Academico;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Academico\ProvaMagica;
+use App\Academico\TorneioBruxo;
 use App\Academico\Pontuacao;
 use App\Academico\ConviteTorneio;
 use App\Academico\Torneio;
@@ -70,12 +70,12 @@ foreach ($convites as $convite) {
     echo PHP_EOL;
 }
 
-$desafio = new ProvaMagica("Feitiço de Defesa", "Executar um feitiço de escudo", 10.0);
+$desafio = new TorneioBruxo("Torneio Tribruxo", "Jogo de Quadribol", 10.0);
 
 $avaliacoes = [
-    ['casa' => 'Grifinória', 'nota' => 8.0],
-    ['casa' => 'Sonserina',  'nota' => 7.5],
-    ['casa' => 'Corvinal',   'nota' => 9.0],
+    ['casa' => 'Grifinória', 'nota' => 9.0],
+    ['casa' => 'Sonserina',  'nota' => 8.0],
+    ['casa' => 'Corvinal',   'nota' => 6.0],
     ['casa' => 'Lufa-Lufa',  'nota' => 6.5]
 ];
 
@@ -86,5 +86,6 @@ foreach ($avaliacoes as $avaliacao) {
     $pontuacao->adicionarPontos($avaliacao['casa'], $pontos);
 }
 
-echo "Ranking da Prova Mágica: " . $desafio->getTitulo() . "\n";
+echo "SALÃO PRINCIPAL" . "\n";
+echo "Exibição dos Rankings: " . $desafio->getTitulo() . "\n";
 $pontuacao->exibirRanking();
