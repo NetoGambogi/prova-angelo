@@ -109,10 +109,11 @@ while (true) {
                 echo "Nenhuma notificação recebida ainda." . PHP_EOL;
             } else {
                 foreach ($mensagens as $m) {
-                    echo "- [" . ($m->getStatus()) . "] " . $m->getConteudo() . PHP_EOL;
+                    echo "- " . $m->getConteudo() . PHP_EOL;
                 }
             }
             break;
+
 
         case '5':
             echo PHP_EOL . "--- Confirmar Leitura ---" . PHP_EOL;
