@@ -3,7 +3,7 @@ namespace App\Academico;
 
 require_once __DIR__ . '/Desafio.php';
 
-class ProvaMagica extends Desafio {
+class TorneioBruxo extends Desafio {
     public function __construct(string $titulo, string $descricao, float $pontuacaoMaxima) {
         parent::__construct($titulo, $descricao, $pontuacaoMaxima);
     }
