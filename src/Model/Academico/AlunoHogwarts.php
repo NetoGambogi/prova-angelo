@@ -1,7 +1,10 @@
 <?php
 
 declare(strict_types=1);
+
 namespace App\Academico;
+
+require_once __DIR__ . '/Aluno.php';
 
 class AlunoHogwarts extends Aluno
 {

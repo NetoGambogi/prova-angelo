@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\Academico;
+
 use App\Academico\Aluno;
 use App\Academico\Carta;
 use App\Academico\Casa;
