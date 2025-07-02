@@ -19,16 +19,16 @@ $torneio = new Torneio(
     'Torneio Tribruxo',
     'Castelo de Hogwarts',
     new DateTime('1994-11-24'),
-    new DateTime('1994-12-20'),
+    new DateTime('1994-12-20')
 );
 
-// Criação das casas usando a classe Casa que você já criou
+// Criação das casas
 $casaGrifinoria = new Casa('Grifinória');
 $casaLufaLufa = new Casa('Lufa-Lufa');
 $casaCorvinal = new Casa('Corvinal');
 $casaSonserina = new Casa('Sonserina');
 
-// Criação dos alunos com as casas definidas
+// Criação dos alunos
 $alunos = [
     new AlunoHogwarts("Harry Potter", 18, "Masculino", "Coragem", $casaGrifinoria, 5),
     new AlunoHogwarts("Cedrico Diggory", 18, "Masculino", "Lealdade", $casaLufaLufa, 6),
@@ -36,42 +36,58 @@ $alunos = [
     new AlunoHogwarts("Viktor Krum", 18, "Masculino", "Coragem", $casaSonserina, 5),
 ];
 
-// Função para enviar convites para vários alunos
-function enviarConvites(array $alunos, Torneio $torneio) {
+// Enviar convites para os alunos
+function enviarConvites(array $alunos, Torneio $torneio): array {
     $convites = [];
     foreach ($alunos as $aluno) {
-        $mensagem = 'É com muita honra que convidamos você, ' . $aluno->getNome() . ', para participar do Torneio Tribruxo! E representar a sua casa: ' . $aluno->getCasa()->getNome() . '.' . "\n" .
-            'Prepare-se para enfrentar uma série de desafios mágicos e perigosos! Onde o vencedor receberá um prêmio incrível!' . "\n" .
-            'A TAÇA TRIBRUXO!' . "\n" .
-            'Data do Torneio: ' . $torneio->getDataInicio()->format('Y-m-d') . ' até ' . $torneio->getDataFim()->format('Y-m-d') . "\n" .
-            'Local: ' . $torneio->getLocal() . "\n" .
-            'Boa sorte!' . "\n";
+        $mensagem = str_repeat('=', 115) . "\n" .
+            "É com muita honra que convidamos você, {$aluno->getNome()}, para participar do Torneio Tribruxo!\n" .
+            "Representando a sua casa: {$aluno->getCasa()->getNome()}.\n" .
+            "Prepare-se para enfrentar desafios mágicos e perigosos!\n" .
+            "O vencedor receberá um prêmio incrível: A TAÇA TRIBRUXO!\n" .
+            "Data do Torneio: {$torneio->getDataInicio()->format('Y-m-d')} até {$torneio->getDataFim()->format('Y-m-d')}\n" .
+            "Local: {$torneio->getLocal()}\n" .
+            "Boa sorte!\n" .
+            str_repeat('=', 115);
 
-        $convite = new ConviteTorneio(
+        $convites[] = new ConviteTorneio(
             'CONVITE PARA O TORNEIO TRIBRUXO',
             $aluno,
             $torneio,
             $torneio->getDataInicio(),
             $mensagem
         );
-        $convite->aceitarConvite();
-        $convites[] = $convite;
     }
     return $convites;
 }
 
-// Chamando a função corretamente
 $convites = enviarConvites($alunos, $torneio);
 
-// Exibindo os convites
-foreach ($convites as $convite) {
-    echo $convite->getAluno()->getNome() . ' - ';
-    echo $convite->isAceito() ? 'Aceitou o convite.' : 'Recusou o convite.';
-    echo PHP_EOL;
+// Função para decidir se o aluno aceita ou recusa
+function decidirConvite(ConviteTorneio $convite): void {
+    echo $convite->getAluno()->getNome() . ", você aceita o convite? (s/n): ";
+    $resposta = strtolower(trim(readline()));
+    if ($resposta === 's' || $resposta === 'sim') {
+        $convite->aceitarConvite();
+        echo "Convite aceito por {$convite->getAluno()->getNome()}!\n\n";
+    } elseif ($resposta === 'n' || $resposta === 'não') {
+        $convite->recusarConvite();
+        echo "Convite recusado por {$convite->getAluno()->getNome()}.\n\n";
+    } else {
+        echo "Resposta inválida. Consideraremos como recusado.\n\n";
+        $convite->recusarConvite();
+    }
 }
 
+// Executa a decisão para cada convite
+foreach ($convites as $convite) {
+    decidirConvite($convite);
+}
+
+// Criar um desafio
 $desafio = new TorneioBruxo("Torneio Tribruxo", "Jogo de Quadribol", 10.0);
 
+// Avaliações
 $avaliacoes = [
     ['casa' => 'Grifinória', 'nota' => 9.0],
     ['casa' => 'Sonserina',  'nota' => 8.0],
@@ -79,6 +95,7 @@ $avaliacoes = [
     ['casa' => 'Lufa-Lufa',  'nota' => 6.5]
 ];
 
+// Atribuição de pontuação
 $pontuacao = new Pontuacao();
 
 foreach ($avaliacoes as $avaliacao) {
@@ -86,6 +103,9 @@ foreach ($avaliacoes as $avaliacao) {
     $pontuacao->adicionarPontos($avaliacao['casa'], $pontos);
 }
 
-echo "SALÃO PRINCIPAL" . "\n";
+// Exibição dos rankings
+echo "\n============================================\n";
+echo "SALÃO PRINCIPAL\n";
 echo "Exibição dos Rankings: " . $desafio->getTitulo() . "\n";
+echo "============================================\n";
 $pontuacao->exibirRanking();

@@ -94,14 +94,6 @@ class ConviteTorneio
             "Data de Início: {$this->torneio->getDataInicio()->format('Y-m-d H:i:s')}" . PHP_EOL .
             "Data de Finalização: {$this->torneio->getDataFim()->format('Y-m-d H:i:s')}" . PHP_EOL .
             "Informações: {$this->informacoes}"
-        );
-        $convite->aceitarConvite();
-
-        if ($convite->isAceito()) {
-            echo "Convite aceito por {$convite->getAluno()->getNome()} para o torneio {$convite->getTorneio()->getNome()}." . PHP_EOL;
-        } else {
-            echo "Convite recusado por {$convite->getAluno()->getNome()} para o torneio {$convite->getTorneio()->getNome()}." . PHP_EOL;
-        }
-
+        );        
     }
 }
