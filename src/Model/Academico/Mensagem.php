@@ -6,6 +6,8 @@
     use DateTime;
 
     final class Mensagem {
+        private bool $lida = false;
+
         public function __construct(
         private string $conteudo,
         private Pessoa $remetente,
@@ -50,5 +52,19 @@
     public function marcarComoEnviada(): void
     {
         $this->enviada = true;
+    }
+
+    public function confirmarLeitura(): void
+    {
+        $this->lida = true;
+    }
+
+    public function isLida(): bool
+    {
+        return $this->lida;
+    }
+
+    public function __toString(): string {
+    return $this->getConteudo();
     }
 }

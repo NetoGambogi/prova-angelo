@@ -1,11 +1,10 @@
 <?php
 
 declare(strict_types=1);
-namespace App\Model\Academico;
 
-use App\Academico\Aluno;
-use App\Academico\Pessoa;
-use App\Academico\Casa;
+namespace App\Academico;
+
+require_once __DIR__ . '/Aluno.php';
 
 class AlunoHogwarts extends Aluno
 {

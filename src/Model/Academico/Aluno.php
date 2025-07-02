@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Academico;
 
+require_once __DIR__ . '/Pessoa.php';
+
 
 class Aluno extends Pessoa
 {

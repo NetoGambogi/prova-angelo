@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Academico;
+namespace App\Academico;
 use DateTime;
 use Exception;
 
