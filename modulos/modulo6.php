@@ -75,26 +75,38 @@ while (true) {
             break;
 
         case '2':
-            echo PHP_EOL . "--- Agendar Aviso ---" . PHP_EOL;
-            $mensagemTexto = readline("Digite a mensagem a agendar: ");
-            $dataHora = readline("Digite data/hora agendada (Y-m-d H:i): ");
-            $dataAgendada = DateTime::createFromFormat('Y-m-d H:i', $dataHora);
+        echo PHP_EOL . "--- Agendar Aviso ---" . PHP_EOL;
+        $mensagemTexto = readline("Digite a mensagem a agendar: ");
+        $dataHora = readline("Digite data/hora agendada (Y-m-d H:i): ");
 
-            if (!$dataAgendada) {
-                echo "Data/Hora inválida!" . PHP_EOL;
-                break;
-            }
+        $dataAgendada = DateTime::createFromFormat('Y-m-d H:i', $dataHora);
 
-            $mensagemAgendada = new Mensagem(
-                $mensagemTexto,
-                $professor,
-                $alunos,
-                new DateTime(),
-                $dataAgendada
-            );
-            $servico->enviarMensagem($mensagemAgendada);
-            echo "Mensagem agendada para {$dataHora}." . PHP_EOL;
+        if ($dataAgendada === false) {
+            echo "Data/Hora inválida! Verifique o formato." . PHP_EOL;
             break;
+        }
+
+        $erros = DateTime::getLastErrors();
+        if (is_array($erros) && ($erros['warning_count'] > 0 || $erros['error_count'] > 0)) {
+        }
+
+        $agora = new DateTime();
+        if ($dataAgendada <= $agora) {
+            echo "A data/hora deve ser no futuro!" . PHP_EOL;
+            break;
+        }
+
+        $mensagemAgendada = new Mensagem(
+            $mensagemTexto,
+            $professor,
+            $alunos,
+            $agora,
+            $dataAgendada
+        );
+
+        $servico->enviarMensagem($mensagemAgendada);
+        echo "Mensagem agendada para {$dataHora}." . PHP_EOL;
+        break;
 
         case '3':
             echo PHP_EOL . "--- Processar Fila de Mensagens ---" . PHP_EOL;
