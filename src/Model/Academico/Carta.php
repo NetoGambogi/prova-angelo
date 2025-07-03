@@ -1,6 +1,8 @@
 <?php 
 
 
+namespace App\Academico;
+
 Class Carta 
 {
     private string $nome;
@@ -91,7 +93,7 @@ Class Carta
     private function gerarTextoCarta():string {
         
         return "Prezado(a) {$this->nome},\n\n" .
-             "Temos o prazer de informar que voce foi pre-selecionando(a) para ingressar na Escola de Magia e Bruxaria de Hogwarts.n"; .
+             "Temos o prazer de informar que voce foi pre-selecionando(a) para ingressar na Escola de Magia e Bruxaria de Hogwarts.n" .
              "Favor embarcar no Expresso de Hogwarts no setor 5 no dia 20 de Janeiro.\n\n" . 
              "Atenciosamente, \n" . 
              "Diretor Alvo Dumbledore"; 
@@ -106,16 +108,16 @@ Class Carta
             
     }
 
-    public function receberCarta(): void 
+        public function receberCarta(): void 
     {
         $this->data_recebida = time();
-        echo "Carta recebida por {$this->nome} . em" . date ('d/m/Y H:i:s', $this->data_recebida) .
-
+        echo "Carta recebida por {$this->nome} em " . date('d/m/Y H:i:s', $this->data_recebida) . ".\n";
     }
+
 
     public function confirmarRecebimento(): void {
         $this->data_confirmacao = time ();
-        $this-> confirmado = true;
+        $this->confirmado = true;
         echo "Recebimento confirmado em " . date ('d/m/Y H:i:s', $this->data_confirmacao). ".\n";
 
     }
