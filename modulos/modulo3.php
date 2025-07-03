@@ -80,56 +80,40 @@ function decidirConvite(ConviteTorneio $convite): void {
 }
 
 // Executa a decisão para cada convite
-    $alunosAceitaram = [];
-    $alunosRecusaram = [];
-        foreach ($convites as $convite) {
-            decidirConvite($convite);
+$alunosAceitaram = [];
+$alunosRecusaram = [];
 
-            if ($convite->foiAceito()) {
-                $alunosAceitaram[] = $convite->getAluno()->getNome();
-            } elseif ($convite->foiRecusado()) {
-                $alunosRecusaram[] = $convite->getAluno()->getNome();
-            }
-        }
-    echo "\n=== ALUNOS QUE ACEITARAM O CONVITE ===\n";
-        foreach ($alunosAceitaram as $nome) {
-    echo "- $nome\n";
+foreach ($convites as $convite) {
+    decidirConvite($convite);
+
+    if ($convite->foiAceito()) {
+        $aluno = $convite->getAluno();
+        $nota = (float) readline("Digite a nota para {$aluno->getNome()}: ");
+        $alunosAceitaram[] = [
+            'aluno' => $aluno,
+            'nota' => $nota
+        ];
+    } elseif ($convite->foiRecusado()) {
+        $alunosRecusaram[] = $convite->getAluno()->getNome();
     }
-
-    echo "\n=== ALUNOS QUE RECUSARAM O CONVITE ===\n";
-        foreach ($alunosRecusaram as $nome) {
-    echo "- $nome\n";
-    }
-    echo "\n============================================\n";
-
-    echo "Torneio Tribruxo Aconteceu!\n";
-    echo "Após o Torneio, os alunos que participaram tiveram seu desempenho avaliado.\n";
-    echo "Foi um evento mágico inesquecível!\n";
-    echo "Um Ranking foi criado para mostrar o desempenho dos alunos que participaram do Torneio Tribruxo.\n";
-    echo "O Ranking foi exibido no Salão Principal.\n";
-
-// Criar um desafio
-$desafio = new TorneioBruxo("Torneio Tribruxo", "Jogo de Quadribol", 10.0);
-
-// Avaliações
-$avaliacoes = [
-    ['casa' => 'Grifinória', 'nota' => 9.0],
-    ['casa' => 'Sonserina',  'nota' => 8.0],
-    ['casa' => 'Corvinal',   'nota' => 6.0],
-    ['casa' => 'Lufa-Lufa',  'nota' => 6.5]
-];
-
-// Atribuição de pontuação
-$pontuacao = new Pontuacao();
-
-foreach ($avaliacoes as $avaliacao) {
-    $pontos = $desafio->avaliarDesempenho($avaliacao['nota']);
-    $pontuacao->adicionarPontos($avaliacao['casa'], $pontos);
 }
 
-// Exibição dos rankings
-echo "\n============================================\n";
-echo "SALÃO PRINCIPAL\n";
-echo "Exibição dos Rankings: " . $desafio->getTitulo() . "\n";
-echo "============================================\n";
-$pontuacao->exibirRanking();
+// Exibir quem aceitou e recusou
+echo "\n=== ALUNOS QUE RECUSARAM O CONVITE ===\n";
+foreach ($alunosRecusaram as $nome) {
+    echo "- $nome\n";
+}
+
+echo "\n=== SALÃO PRINCIPAL ===\n";
+
+// Ordenar por nota (decrescente)
+usort($alunosAceitaram, fn($a, $b) => $b['nota'] <=> $a['nota']);
+
+// Exibir ranking
+$pos = 1;
+foreach ($alunosAceitaram as $item) {
+    $aluno = $item['aluno'];
+    $nota = $item['nota'];
+    echo "{$pos}º - {$aluno->getNome()} ({$aluno->getCasa()->getNome()}) - Nota: {$nota}\n";
+    $pos++;
+}
