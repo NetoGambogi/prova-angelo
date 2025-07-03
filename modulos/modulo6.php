@@ -79,7 +79,9 @@ while (true) {
         $mensagemTexto = readline("Digite a mensagem a agendar: ");
         $dataHora = readline("Digite data/hora agendada (Y-m-d H:i): ");
 
-        $dataAgendada = DateTime::createFromFormat('Y-m-d H:i', $dataHora);
+        $timezone = new DateTimeZone('America/Sao_Paulo'); // defina seu fuso!
+
+        $dataAgendada = DateTime::createFromFormat('Y-m-d H:i', $dataHora, $timezone);
 
         if ($dataAgendada === false) {
             echo "Data/Hora inválida! Verifique o formato." . PHP_EOL;
@@ -88,9 +90,12 @@ while (true) {
 
         $erros = DateTime::getLastErrors();
         if (is_array($erros) && ($erros['warning_count'] > 0 || $erros['error_count'] > 0)) {
+            echo "Data/Hora inválida! Verifique o formato." . PHP_EOL;
+            break;
         }
 
-        $agora = new DateTime();
+        $agora = new DateTime('now', $timezone);
+
         if ($dataAgendada <= $agora) {
             echo "A data/hora deve ser no futuro!" . PHP_EOL;
             break;
