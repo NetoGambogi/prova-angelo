@@ -38,7 +38,6 @@ echo "2. Aluno Novo\n";
 $opcao = input("Escolha o tipo de aluno (1 ou 2): ");
 
 $nome = input("Nome: ");
-$idade = (int) input("Idade: ");
 $genero = input("Gênero (M/F/Outro): ");
 $traco = input("Traço de personalidade (coragem, ambição, lealdade, inteligência): ");
 
@@ -81,25 +80,23 @@ if ($opcao === '1') {
     $ano = 1;
     $idade = 11;
 
+    // Criar a instância do aluno novo
     $aluno = new AlunoNovo($nome, $idade, $genero, $casaEscolhida, $ano, $traco);
 
-    // Carta e outras ações...
-}
-
-
-    $resposta = strtolower(input("Deseja aceitar a carta de Hogwarts? (s/n): "));
+    // Criar a carta
     $carta = new Carta($nome, $idade, $genero);
     $carta->enviarCarta();
     $carta->receberCarta();
     $carta->confirmarRecebimento();
-    $carta->setConfirmado(true);
 
+    // Associar a carta ao aluno
+    $aluno->receberCarta($carta);
+
+    // Perguntar se deseja aceitar
+    $resposta = strtolower(input("Deseja aceitar a carta de Hogwarts? (s/n): "));
     if ($resposta === 's') {
         $aluno->aceitarCarta();
     }
- else {
-    echo "Opção inválida.\n";
-    exit;
 }
 
 echo "\n--- RESUMO ---\n";

@@ -13,7 +13,7 @@ final class AlunoNovo extends Aluno
     private string $traco;
     private string $sangue;
     private bool $cartaAceita = false;
-    private ?Carta $carta = null;//tem erro, pois a classe carta ainda não foi colocada.
+    private ?Carta $carta = null;
 
     public function __construct(
         string $nome,

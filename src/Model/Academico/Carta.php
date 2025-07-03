@@ -1,6 +1,6 @@
 <?php 
 
-
+declare(strict_types=1);
 namespace App\Academico;
 
 Class Carta 
@@ -93,8 +93,8 @@ Class Carta
     private function gerarTextoCarta():string {
         
         return "Prezado(a) {$this->nome},\n\n" .
-             "Temos o prazer de informar que voce foi pre-selecionando(a) para ingressar na Escola de Magia e Bruxaria de Hogwarts.n" .
-             "Favor embarcar no Expresso de Hogwarts no setor 5 no dia 20 de Janeiro.\n\n" . 
+             "Temos o prazer de informar que voce foi pre-selecionando(a) para ingressar na Escola de Magia e Bruxaria de Hogwarts. " .
+             " Favor embarcar no Expresso de Hogwarts no setor 5 no dia 20 de Janeiro.\n\n" . 
              "Atenciosamente, \n" . 
              "Diretor Alvo Dumbledore"; 
     }

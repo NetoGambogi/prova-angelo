@@ -8,6 +8,23 @@ Execute o arquivo app.php, e escolha qual módulo deseja visualizar.
 Responsáveis pelos módulos:
 
 Módulo 1 - Convite e Cadastro de Alunos e módulo 2 - Seleção de Casas: Thales, Nickson, Rhuan
+Descrição do Módulo 1 e 2:
+Este módulo foi desenvolvido para realizar o registro de alunos no sistema escolar de Hogwarts. Através dele, o usuário pode cadastrar tanto alunos que estão ingressando pela primeira vez (Alunos Novos), quanto alunos que já estudam em Hogwarts (Alunos de Hogwarts).
+
+Durante o cadastro, o sistema coleta informações como nome, gênero e o principal traço de personalidade do aluno (por exemplo: coragem, ambição, lealdade ou inteligência). Esse traço é utilizado para determinar automaticamente a Casa de Hogwarts mais compatível com o aluno, entre Grifinória, Sonserina, Lufa-Lufa e Corvinal.
+
+Para alunos novos, o sistema define automaticamente a idade como 11 anos e os matricula no primeiro ano. Além disso, é criada e enviada uma carta de aceitação de Hogwarts, a qual o aluno precisa aceitar para efetivar sua matrícula. A carta é registrada no sistema e associada ao aluno.
+
+Já os alunos veteranos têm a opção de escolher em qual ano escolar estão atualmente (de 1 a 7), e sua idade é automaticamente definida como 10 anos + o ano selecionado.
+
+Este módulo também lida com a confirmação do recebimento da carta, garantindo que apenas alunos que realmente aceitaram o convite possam acessar as demais funcionalidades do sistema acadêmico.
+
+PS:A carta não pode ser mandada por pessoas menores que 11 anos
+
+Instruções de Execução:
+é muito facil e simples de se utilizar sendo extremamente intuitivo que não é necessário intruções.
+
+passo a passo: acesse o terminal, coloque o php app.php e aperte o 1 ou o 2 para começar o cadastro
  
 Módulo 3 - Gerenciamento de Torneios e Competições: Thiago, Rafael
 
@@ -40,3 +57,7 @@ Siga os Passos: O sistema irá fazer perguntas para guiar você em cada processo
 Voltar: Quando quiser sair deste menu e voltar para a tela principal, digite 0.
 
 Módulo 6 - Sistema de Alertas e Comunicação: Felipe
+Descrição Módulo 6:
+Este módulo foi desenvolvido com o objetivo de modernizar a comunicação entre professores e alunos, oferecendo um sistema eficaz para envio de mensagens e agendamento de notificações dentro do ambiente escolar. Inspirado no universo mágico de Hogwarts, ele traz uma solução prática que substitui o tradicional envio de recados por corujas, utilizando uma abordagem digital simulada, com notificações instantâneas e agendadas, promovendo uma experiência mais eficiente e organizada.
+
+intruções:
