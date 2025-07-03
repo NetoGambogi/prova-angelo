@@ -10,7 +10,10 @@ Responsáveis pelos módulos:
 Módulo 1 - Convite e Cadastro de Alunos e módulo 2 - Seleção de Casas: Thales, Nickson, Rhuan
  
 Módulo 3 - Gerenciamento de Torneios e Competições: Thiago, Rafael
+
 Explicação: Simula um Torneio Tribruxo em Hogwarts. Ele cria alunos, casas e um torneio com convites personalizados. O usuário interage pelo terminal decidindo se cada aluno aceita ou recusa participar. Após isso, é criado um desafio e as casas que participaram são avaliadas com notas. No final, o sistema mostra um ranking de desempenho das casas no torneio.
+
+Modo de uso: Basta executar o código no terminal para que as instruções sejam dadas.
 
 Módulo 4 - Controle Acadêmico e Disciplinar: Mateus, Luis Antônio
 
