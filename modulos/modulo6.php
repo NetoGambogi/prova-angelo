@@ -79,7 +79,7 @@ while (true) {
         $mensagemTexto = readline("Digite a mensagem a agendar: ");
         $dataHora = readline("Digite data/hora agendada (Y-m-d H:i): ");
 
-        $timezone = new DateTimeZone('America/Sao_Paulo'); // defina seu fuso!
+        $timezone = new DateTimeZone('America/Sao_Paulo');
 
         $dataAgendada = DateTime::createFromFormat('Y-m-d H:i', $dataHora, $timezone);
 
