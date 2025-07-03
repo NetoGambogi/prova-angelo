@@ -140,3 +140,11 @@ Este módulo moderniza a comunicação entre professores e alunos, simulando um 
 - Substitui o envio tradicional de recados por corujas.
 - Permite notificações instantâneas e agendadas.
 - Proporciona uma comunicação prática, eficiente e organizada dentro do sistema.
+
+### Funcionalidades:
+1. Enviar notificação imediata: Responsavel por enviar uma mensagem imediatamente para todos os alunos.
+2. Agendar aviso para depois: Realiza um agendamento de uma mensagem, sendo enviada no dia e hora exata que for colocado.
+3. Fila de mensagens: Processa e envia todas as mensagens agendadas cujo horário já chegou.
+4. Avisos escolares: Lista todas as notificações enviadas.
+5. Confirmar leitura de mensagens: Marcar uma mensagem como lida.
+6. Sair do sistema: Finaliza o programa.
