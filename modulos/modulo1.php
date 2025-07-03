@@ -66,10 +66,10 @@ if ($casaEscolhida === null) {
 }
 
 if ($opcao === '1') {
-    // Aluno Hogwarts escolhe o ano (1-7)
-    $ano = (int) input("Ano escolar (1 a 7): ");
-    if ($ano < 1 || $ano > 7) {
-        echo "Ano inválido. Escolha entre 1 e 7.\n";
+    // Aluno Hogwarts escolhe o ano (2-7)
+    $ano = (int) input("Ano escolar (2 a 7): ");
+    if ($ano < 2 || $ano > 7) {
+        echo "Ano inválido. Escolha entre 2 e 7.\n";
         exit;
     }
     $idade = 10 + $ano; // idade baseada no ano
