@@ -6,8 +6,8 @@
 ---
 
 ## 📋 Sumário
-- [Instruções para Execução do Sistema](#instruções-para-execução-do-sistema)
-- [Responsáveis pelos Módulos](#responsáveis-pelos-módulos)
+- [Instruções para Execução do Sistema](#🚀-instruções-para-execução-do-sistema)
+- [Módulos e seus responsáveis](#🛠️-módulos-e-seus-responsáveis)
   - [Módulo 1 e 2 - Convite, Cadastro e Seleção de Casas](#módulo-1-e-2---convite-cadastro-e-seleção-de-casas)
   - [Módulo 3 - Gerenciamento de Torneios e Competições](#módulo-3---gerenciamento-de-torneios-e-competições)
   - [Módulo 4 - Controle Acadêmico e Disciplinar](#módulo-4---controle-acadêmico-e-disciplinar)
@@ -31,7 +31,7 @@ Dessa forma, o script será iniciado da maneira esperada e todas as interações
 
 ---
 
-## 🛠️ Responsáveis pelos Módulos
+## 🛠️ Módulos e seus responsáveis
 
 ---
 
