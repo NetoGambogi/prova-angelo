@@ -28,6 +28,10 @@ passo a passo: acesse o terminal, coloque o php app.php e aperte o 1 ou o 2 para
  
 Módulo 3 - Gerenciamento de Torneios e Competições: Thiago, Rafael
 
+Explicação: Simula um Torneio Tribruxo em Hogwarts. Ele cria alunos, casas e um torneio com convites personalizados. O usuário interage pelo terminal decidindo se cada aluno aceita ou recusa participar. Após isso, é criado um desafio e as casas que participaram são avaliadas com notas. No final, o sistema mostra um ranking de desempenho das casas no torneio.
+
+Modo de uso: Basta executar o código no terminal para que as instruções sejam dadas.
+
 Módulo 4 - Controle Acadêmico e Disciplinar: Mateus, Luis Antônio
 
 Módulo 5 - Gerenciamento de Professores e Funcionários: Giovanne, Bruna
