@@ -65,6 +65,7 @@ $convites = enviarConvites($alunos, $torneio);
 
 // Função para decidir se o aluno aceita ou recusa
 function decidirConvite(ConviteTorneio $convite): void {
+    echo $convite->getInformacoes() . "\n\n";
     echo $convite->getAluno()->getNome() . ", você aceita o convite? (s ou sim/n ou não): ";
     $resposta = strtolower(trim(readline()));
     if ($resposta === 's' || $resposta === 'sim') {
@@ -80,40 +81,82 @@ function decidirConvite(ConviteTorneio $convite): void {
 }
 
 // Executa a decisão para cada convite
-$alunosAceitaram = [];
-$alunosRecusaram = [];
+    $alunosAceitaram = [];
+    $alunosRecusaram = [];
+    $casasAceitaram = [];
 
-foreach ($convites as $convite) {
-    decidirConvite($convite);
+        foreach ($convites as $convite) {
+            decidirConvite($convite);
 
-    if ($convite->foiAceito()) {
-        $aluno = $convite->getAluno();
-        $nota = (float) readline("Digite a nota para {$aluno->getNome()}: ");
-        $alunosAceitaram[] = [
-            'aluno' => $aluno,
-            'nota' => $nota
-        ];
-    } elseif ($convite->foiRecusado()) {
-        $alunosRecusaram[] = $convite->getAluno()->getNome();
+        if ($convite->foiAceito()) {
+            $alunosAceitaram[] = $convite->getAluno()->getNome();
+            $casasAceitaram[] = $convite->getAluno()->getCasa()->getNome();
+        } elseif ($convite->foiRecusado()) {
+            $alunosRecusaram[] = $convite->getAluno()->getNome();
+        }
+    }
+    $casasAceitaram = array_unique($casasAceitaram);
+    echo "\n=== CASAS QUE ACEITARAM O CONVITE ===\n";
+    foreach ($casasAceitaram as $nome) {
+        echo "- $nome\n";
+    }
+    echo "\n=== ALUNOS QUE ACEITARAM O CONVITE ===\n";
+        foreach ($alunosAceitaram as $nome) {
+    echo "- $nome\n";
+    }
+
+    echo "\n=== ALUNOS QUE RECUSARAM O CONVITE ===\n";
+        foreach ($alunosRecusaram as $nome) {
+    echo "- $nome\n";
+    }
+    echo "\n============================================\n";
+
+// Criar um desafio
+$desafio = new TorneioBruxo(
+    "Jogo de Quadribol",
+    "Faça Gols! A partida termina quando o pomo é capturado ou quando os capitães de ambos os times chegam a um acordo.",
+    10.0,
+    "Estádio de Quadribol",
+    new DateTime('1994-12-01 15:30')
+);
+echo "\n============================================\n";
+echo "INFORMAÇÕES DO DESAFIO\n";
+echo "Título: " . $desafio->getTitulo() . "\n";
+echo "Regra do Desafio: " . $desafio->getRegra() . "\n";
+echo "Local: " . $desafio->getLocal() . "\n";
+echo "Horário: " . $desafio->getDataHora()->format('H:i') . "h\n";
+echo "============================================\n";
+
+
+// Avaliações
+$avaliacoes = [
+    ['casa' => 'Grifinória', 'nota' => 9.0],
+    ['casa' => 'Sonserina',  'nota' => 8.0],
+    ['casa' => 'Corvinal',   'nota' => 6.0],
+    ['casa' => 'Lufa-Lufa',  'nota' => 6.5]
+];
+
+echo "Torneio Tribruxo Aconteceu!\n";
+echo "Após o Torneio, os alunos que participaram tiveram seu desempenho avaliado.\n";
+echo "Foi um evento mágico inesquecível!\n";
+echo "Um Ranking foi criado para mostrar o desempenho das casas que participaram do Torneio Tribruxo.\n";
+echo "O Ranking foi exibido no Salão Principal.\n";
+
+// Atribuição de pontuação
+$pontuacao = new Pontuacao();
+
+foreach ($avaliacoes as $avaliacao) {
+    // Só pontuar se a casa participou
+    if (in_array($avaliacao['casa'], $casasAceitaram)) {
+        $pontos = $desafio->avaliarDesempenho($avaliacao['nota']);
+        $pontuacao->adicionarPontos($avaliacao['casa'], $pontos);
     }
 }
 
-// Exibir quem aceitou e recusou
-echo "\n=== ALUNOS QUE RECUSARAM O CONVITE ===\n";
-foreach ($alunosRecusaram as $nome) {
-    echo "- $nome\n";
-}
 
-echo "\n=== SALÃO PRINCIPAL ===\n";
-
-// Ordenar por nota (decrescente)
-usort($alunosAceitaram, fn($a, $b) => $b['nota'] <=> $a['nota']);
-
-// Exibir ranking
-$pos = 1;
-foreach ($alunosAceitaram as $item) {
-    $aluno = $item['aluno'];
-    $nota = $item['nota'];
-    echo "{$pos}º - {$aluno->getNome()} ({$aluno->getCasa()->getNome()}) - Nota: {$nota}\n";
-    $pos++;
-}
+// Exibição dos rankings
+echo "\n============================================\n";
+echo "SALÃO PRINCIPAL\n";
+echo "Exibição dos Rankings: " . $torneio->getNome() . "\n";
+echo "============================================\n";
+$pontuacao->exibirRanking();
